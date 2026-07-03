@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Reset Votes</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; text-align: center; padding: 100px; background: #f7fafc; }
+        .reset-container { 
+            background: white; padding: 40px; border-radius: 20px; 
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05); display: inline-block;
+        }
+        h1 { color: #2d3748; }
+        p { color: #4a5568; margin-bottom: 30px; }
+        .btn-reset { 
+            background: #4a90e2; color: white; border: none; padding: 15px 40px; 
+            font-size: 18px; font-weight: bold; border-radius: 10px; cursor: pointer; transition: 0.2s;
+        }
+        .btn-reset:hover { background: #357abd; transform: translateY(-2px); }
+        .info-note { margin-top: 20px; font-size: 13px; color: #a0aec0; }
+    </style>
+</head>
+<body>
+
+    <div class="reset-container">
+        <h1>Clear Vote Counts</h1>
+        <p>Ready for a new round? This will set all <strong>votes to zero</strong>.</p>
+        
+        <button class="btn-reset" onclick="resetVotesOnly()">CLEAR VOTES</button>
+        
+        <div class="info-note">Note: Contestant photos will be kept.</div>
+        <br>
+        <a href="results.html" style="color: #4a90e2; text-decoration: none;">Return to Results</a>
+    </div>
+
+    <script>
+        function resetVotesOnly() {
+            // Confirm with the user
+            const confirmation = confirm("Are you sure you want to restart the vote count to zero?");
+            
+            if (confirmation) {
+                // We ONLY remove the vote counts
+                localStorage.removeItem('electionDB');
+                
+                // We do NOT remove photoA, photoB, or photoC
+                
+                alert("Votes have been reset! Photos are still saved.");
+                window.location.href = "results.html"; // Send you back to see the clean chart
+            }
+        }
+    </script>
+</body>
+</html>
